@@ -1,0 +1,5 @@
+{
+  "name": "Lifeboard Pro",
+  "description": "A comprehensive Lifeboard application designed to be a personal dashboard, helping users transform goals into reality through task organization, progress tracking, and gamification. It features a Kanban-style board, scoring system, and AI-powered suggestions.",
+  "requestFramePermissions": []
+}
