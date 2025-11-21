@@ -5,7 +5,7 @@ interface TabsProps {
     setActiveTab: (tab: string) => void;
 }
 
-const tabsList = ['Kanban', 'Agenda', 'Metas', 'Orçamento', 'Citações', 'Concluídos', 'Recompensas', 'Backup'];
+const tabsList = ['Foco', 'Kanban', 'Pendências', 'Agenda', 'Metas', 'Saúde', 'Orçamento', 'Citações', 'PDA', 'Planejamento', 'Concluídos', 'Recompensas', 'Backup'];
 
 const Tabs: React.FC<TabsProps> = ({ activeTab, setActiveTab }) => {
   return (

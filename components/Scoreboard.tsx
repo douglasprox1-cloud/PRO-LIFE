@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 import { StarIcon } from './Icons';
@@ -13,7 +14,8 @@ interface ScoreboardProps {
     dailyPoints: number;
     totalPoints: number;
     dailyTaskProgress: number; // 0-100
-    goalsProgress: number; // 0-100
+    weeklyGoalsProgress: number; // 0-100
+    monthlyGoalsProgress: number; // 0-100
 }
 
 const StatCard: React.FC<StatCardProps> = ({ title, value, icon, progress }) => {
@@ -61,13 +63,14 @@ const StatCard: React.FC<StatCardProps> = ({ title, value, icon, progress }) => 
 };
 
 
-const Scoreboard: React.FC<ScoreboardProps> = ({ dailyPoints, totalPoints, dailyTaskProgress, goalsProgress }) => {
+const Scoreboard: React.FC<ScoreboardProps> = ({ dailyPoints, totalPoints, dailyTaskProgress, weeklyGoalsProgress, monthlyGoalsProgress }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8 px-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-8 px-4">
       <StatCard title="Pontuação do Dia" value={dailyPoints} icon={<StarIcon className="w-6 h-6 text-yellow-400"/>} />
       <StatCard title="Pontuação Total" value={totalPoints} icon={<StarIcon className="w-6 h-6 text-amber-500"/>} />
       <StatCard title="Tarefas do Dia" value={`${dailyTaskProgress.toFixed(0)}%`} icon={<div className="font-bold text-indigo-400 text-xl">✓</div>} progress={dailyTaskProgress} />
-      <StatCard title="Metas Concluídas" value={`${goalsProgress.toFixed(0)}%`} icon={<div className="font-bold text-indigo-400 text-xl">🎯</div>} progress={goalsProgress} />
+      <StatCard title="Metas Semanais" value={`${weeklyGoalsProgress.toFixed(0)}%`} icon={<div className="font-bold text-indigo-400 text-xl">🎯</div>} progress={weeklyGoalsProgress} />
+      <StatCard title="Metas Mensais" value={`${monthlyGoalsProgress.toFixed(0)}%`} icon={<div className="font-bold text-indigo-400 text-xl">🗓️</div>} progress={monthlyGoalsProgress} />
     </div>
   );
 };

@@ -31,7 +31,7 @@ const SubtaskModal: React.FC<SubtaskModalProps> = ({ isOpen, onClose, task, onUp
     if (newSubtaskText.trim() === '') return;
 
     const newSubtask: Subtask = {
-      id: `sub_${Date.now()}`,
+      id: `sub_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`,
       text: newSubtaskText.trim(),
       completed: false,
     };

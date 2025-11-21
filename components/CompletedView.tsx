@@ -9,7 +9,7 @@ interface CompletedViewProps {
 const CompletedView: React.FC<CompletedViewProps> = ({ tasks }) => {
     const completedTasks = tasks
         .filter(task => task.completed)
-        .sort((a, b) => new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime());
+        .sort((a, b) => new Date(b.completionDate || 0).getTime() - new Date(a.completionDate || 0).getTime());
 
     return (
         <div className="p-4 text-white">
@@ -19,11 +19,18 @@ const CompletedView: React.FC<CompletedViewProps> = ({ tasks }) => {
                     {completedTasks.map(task => (
                         <div key={task.id} className="bg-slate-800 rounded-md p-4 flex items-center justify-between opacity-80">
                             <div className="flex items-center">
-                                <CheckCircleIcon className="w-6 h-6 text-green-500 mr-4" />
+                                <CheckCircleIcon className={`w-6 h-6 mr-4 ${task.resolution === 'defeated' ? 'text-red-500' : 'text-green-500'}`} />
                                 <div>
                                     <p className="font-medium text-slate-400 line-through">{task.title}</p>
                                     <p className="text-sm text-slate-500">
-                                        Concluída {task.date ? `em ${new Date(task.date).toLocaleDateString('pt-BR')}` : ''} - (+{task.points} pts)
+                                        {`Concluída em ${task.completionDate ? new Date(task.completionDate + 'T00:00:00').toLocaleDateString('pt-BR') : 'data desconhecida'} - `}
+                                        {task.category === 'Padrão Paralelo' ? (
+                                            <span className={task.resolution === 'winner' ? 'text-green-400 font-bold' : 'text-red-400 font-bold'}>
+                                                {task.resolution === 'winner' ? `+${task.points} pts (Vencedor)` : `${-task.points} pts (Derrotado)`}
+                                            </span>
+                                        ) : (
+                                            <span>(+{task.points} pts)</span>
+                                        )}
                                     </p>
                                 </div>
                             </div>
